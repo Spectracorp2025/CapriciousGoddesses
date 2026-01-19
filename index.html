@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capricious Goddesses - Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=MedievalSharp&family=Almendra:ital@0;1&display=swap" rel="stylesheet">
+   
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff69b4">
+    
+    <style>
+        :root {
+            --gold: #ffd700;
+            --dark-gold: #b8860b;
+            --magic-purple: #4b0082;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Almendra', serif;
+            background-color: #000510;
+        }
+
+        .background-fixed {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(5, 10, 30, 0.65), rgba(5, 10, 30, 0.85)), 
+                url('fondo.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 0;
+ 
+}
+
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .main-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            padding: 40px 10px;
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fcf6ba, #bf953f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s infinite linear;
+            background-size: 200% auto;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .slider-books {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            gap: 30px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .slider-books::-webkit-scrollbar { display: none; }
+
+        .slider-books a {
+            text-decoration: none;
+        }
+
+        .card {
+            min-width: 240px;
+            scroll-snap-align: center;
+            text-align: center;
+        }
+
+        .book-img {
+            width: 210px;
+            height: 310px;
+            border: 3px solid var(--gold);
+            border-radius: 8px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            object-fit: cover;
+            animation: float-book 4s ease-in-out infinite;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        @keyframes float-book {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .card:hover .book-img {
+            transform: scale(1.05) rotate(-1deg);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+        }
+
+        .book-soon {
+            width: 210px;
+            height: 310px;
+            background: rgba(20, 10, 0, 0.85);
+            border: 3px solid var(--gold);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            animation: pulse-gold 3s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 10px var(--gold); }
+            50% { box-shadow: 0 0 35px #fff2a8; }
+            100% { box-shadow: 0 0 10px var(--gold); }
+        }
+
+        .rune {
+            font-size: 4rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px #fff;
+            opacity: 0.7;
+            animation: spin-slow 10s infinite linear;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .author-tag {
+    position: fixed;
+    bottom: -50px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0,0,0,0.7);
+    padding: 8px 15px;
+    border-radius: 40px;
+    border: 1px solid var(--gold);
+    width: auto;
+    max-width: max-content;
+    z-index: 1;
+}
+
+        .author-icon {
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            margin-right: 10px;
+        }
+
+        #modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            color: white; text-align: center;
+        }
+        
+        .main-title,
+.slider-books,
+.author-tag {
+    position: relative;
+    z-index: 1;
+}
+        
+        
+        
+        
+        
+    </style>
+</head>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+  .then(() => console.log('Service Worker registrado!'));
+}
+</script>
+
+<body>
+
+<div id="modal">
+    <div style="padding: 20px; border: 1px solid var(--gold); margin: 20px; background: #000510;">
+        <h1 style="font-family:'Cinzel Decorative'; color: var(--gold);">SALUDOS VIAJERO</h1>
+        <p>Bienvenido a la web oficial de <b>Capricious Goddesses</b>.<br>Prepárate para leer la saga.</p>
+        <button onclick="entrar()" style="background:var(--dark-gold); color:white; border:none; padding:12px 25px; font-family:'MedievalSharp'; cursor:pointer; font-size:1.1rem; border-radius:5px;">ACEPTAR</button>
+    </div>
+</div>
+
+<div class="background-fixed"></div>
+<canvas class="particles" id="canvas"></canvas>
+
+<div class="main-title">Capricious Goddesses</div>
+
+<div class="slider-books">
+    <a href="libro1.html" class="card">
+        <img src="libro1.png" class="book-img">
+        <p style="color:var(--gold); font-size:1.2rem; margin-top:10px;"> Alas de Ceniza</p>
+    </a>
+
+    <div class="card">
+        <div class="book-soon">
+            <div class="rune">ᛟ</div>
+            <p style="color:#fff; margin:0;">LIBRO 2</p>
+            <p style="color:var(--gold); font-size:0.7rem; letter-spacing:2px;">PRÓXIMAMENTE</p>
+        </div>
+        <p style="color:#aaa; font-size:1.1rem; margin-top:10px;">Indefinido</p>
+    </div>
+</div>
+
+<div class="author-tag">
+    <img src="icono.png" class="author-icon">
+    <span style="font-family:'MedievalSharp'; color:white;">Carlos Rodríguez</span>
+</div>
+
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const audio = document.getElementById('musica');
+
+    function entrar() {
+        document.getElementById('modal').style.display = 'none';
+        audio.play();
+        iniciarParticulas();
+    }
+
+    document.addEventListener("visibilitychange", function() {
+        if (document.hidden) {
+            audio.pause();
+        } else {
+            if (document.getElementById('modal').style.display === 'none') {
+                audio.play();
+            }
+        }
+    });
+
+    function iniciarParticulas() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particlesArray = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = Math.random() * 0.5 + 0.2;
+                this.opacity = Math.random();
+            }
+            update() {
+                this.y -= this.speedY;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particlesArray.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+</script>
+
+</body>
+</html>

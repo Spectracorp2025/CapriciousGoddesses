@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capricious Goddesses — Alas de Ceniza</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=MedievalSharp&family=Almendra&display=swap" rel="stylesheet">
+
+<style>
+:root{ --gold:#ffd700; }
+
+html,body{
+ margin:0;padding:0;
+ font-family:'Almendra',serif;
+ background:transparent;
+ overflow-y:auto;
+}
+
+.bg{
+ position:fixed;
+ inset:0;
+ background:
+ linear-gradient(rgba(5,10,30,.45),rgba(5,10,30,.75)),
+ url('fondo.png');
+ background-size:cover;
+ background-position:center top;
+ background-repeat:no-repeat;
+ z-index:0;
+}
+
+.container{
+ min-height:100svh;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ padding:40px 20px 100px;
+ text-align:center;
+ color:#fff;
+ position:relative;
+ z-index:1;
+}
+
+.title{
+ font-family:'Cinzel Decorative';
+ font-size:2.7rem;
+ color:var(--gold);
+ text-shadow:0 0 25px rgba(255,215,0,.9);
+}
+
+.resume{
+ max-width:580px;
+ margin-top:25px;
+ padding:22px;
+ background:rgba(0,0,0,.5);
+ border:1px solid var(--gold);
+ border-radius:14px;
+ line-height:1.6;
+ animation:fadeIn 2.5s;
+}
+
+.chapter{
+ margin-top:40px;
+ width:100%;
+ max-width:92vw;
+ padding:14px;
+ border-radius:14px;
+ text-decoration:none;
+ font-family:'MedievalSharp';
+ font-size:1rem;
+ display:block;
+ position:relative;
+ overflow:hidden;
+ animation:float 5s ease-in-out infinite;
+}
+
+.chapter::after{
+ content:"";
+ position:absolute;
+ inset:-60%;
+ opacity:.5;
+ animation:spin 6s linear infinite;
+}
+
+.c1{background:#1f2555;border:1px solid #7aa2ff;color:#e2e9ff;}
+.c1::after{background:radial-gradient(circle,#7aa2ff,transparent 60%);}
+
+.c2{background:#4a321e;border:1px solid #ffcf7a;color:#fff3d6;}
+.c2::after{background:radial-gradient(circle,#ffd27a,transparent 60%);}
+
+
+.c3{
+  background:#1f3b2d;
+  border:1px solid #6b8f5a;
+  color:#e6f2e6;
+}
+
+.c3::after{
+  background:radial-gradient(circle,#7fa87a,transparent 60%);
+}
+
+
+
+
+
+.c4{background:#1a1a1a;border:1px dashed var(--gold);color:var(--gold);}
+.c4::after{background:radial-gradient(circle,#666,transparent 60%);}
+
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+#modal{
+ position:fixed;inset:0;
+ background:rgba(0,0,0,.92);
+ display:flex;align-items:center;justify-content:center;
+ z-index:999;padding:20px;
+}
+
+.modal-box{
+ background:rgba(0,0,0,.85);
+ border:1px solid var(--gold);
+ padding:28px;
+ border-radius:16px;
+ text-align:center;
+ color:#fff;
+ max-width:380px;
+ animation:fadeIn 2s;
+}
+
+.modal-box h2{
+ font-family:'Cinzel Decorative';
+ color:var(--gold);
+ margin-bottom:12px;
+}
+
+.modal-box p{line-height:1.55;font-size:.95rem;}
+
+.modal-box button{
+ margin-top:18px;
+ padding:12px 26px;
+ border:none;
+ background:linear-gradient(135deg,#b8860b,#ffd700);
+ color:#000;border-radius:8px;
+ font-family:'MedievalSharp';
+ cursor:pointer;
+ box-shadow:0 0 15px rgba(255,215,0,.9);
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div id="modal">
+ <div class="modal-box">
+  <h2>El Llamado de los Dioses</h2>
+  <p>
+  El tiempo ha comenzado a plegarse, viajero...<br><br>
+  Las antiguas diosas han observado tu mundo y han elegido un alma capaz de caminar entre realidades.<br><br>
+  No todo aquel que entra regresa siendo el mismo. Aquellos que continúan descubren verdades que los mortales no estaban destinados a conocer.
+  </p>
+  <button onclick="entrar()">Aceptar el Llamado</button>
+ </div>
+</div>
+
+<div class="container">
+
+<div class="title">Alas de Ceniza</div>
+
+<div class="resume">
+Noah creció bajo la ilusión de que su vida era ordinaria... hasta que en un torneo de Kendo, todo cambió.<br><br>
+Arrancado de su destino por entidades, emerge en un territorio donde los dioses aún deambulan entre ruinas, guardando secretos.<br><br>
+Allí deberá aprender a sobrevivir, a confiar y a desconfiar, mientras descubre que su sangre guarda un vínculo prohibido con los mismos seres que gobiernan ese mundo.
+</div>
+
+<a href="1/capitulo1.html" class="chapter c1">Capítulo 1 — Entre Sombras y Luz</a>
+<a href="2/capitulo2.html" class="chapter c2">Capítulo 2 — Cadenas Rotas</a>
+<a href="2/capitulo3.html" class="chapter c3">Capítulo 3 — Aliento de la Muerte</a>
+<div class="chapter c4">Capítulo 4 - Un Nuevo Amanecer<br><small>(20 de Enero)</small></div>
+
+</div>
+
+<audio id="music" loop>
+ <source src="musica1.mp3
+ ">
+</audio>
+
+<script>
+const music=document.getElementById('music');
+function entrar(){
+ document.getElementById('modal').style.display='none';
+ music.play();
+}
+</script>
+
+</body>
+</html>
