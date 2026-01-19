@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Capricious Goddesses – Capítulo 3</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- Icono -->
+    <link rel="icon" href="icono.png">
+
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- =========================
+     PANTALLA DE BIENVENIDA
+========================= -->
+<div id="welcome-screen" class="overlay">
+    <div class="welcome-box">
+        <h1>Bienvenido</h1>
+        <p>
+            Bienvenido al <strong>Capítulo 3</strong> del libro Alas de Ceniza<br>
+            <strong>Capricious Goddesses</strong>.<br><br>
+
+            Estás a punto de comenzar:<br>
+            <em>«Aliento de la Muerte»</em>
+        </p>
+
+        <button id="start-btn">Comenzar lectura</button>
+    </div>
+</div>
+
+<!-- =========================
+     CONTENIDO PRINCIPAL
+========================= -->
+<main id="content" class="hidden">
+
+    <!-- TÍTULO DEL CAPÍTULO -->
+    <section class="chapter-header">
+        <h1>Aliento de la Muerte</h1>
+        <div class="divider"></div>
+    </section>
+    
+    <div class="speed-control">
+    <span>Velocidad:</span>
+    <button id="speed-slow">0.5x</button>
+    <button id="speed-normal" class="active">1.0x</button>
+</div>
+
+<!-- =========================
+         VIDEO 1 (automático)
+    ========================= -->
+    <section class="video-section">
+        <video id="video1" data-next="texto1" controls>
+            <source src="recursos/video1.mp4" type="video/mp4">
+        </video>
+    </section>
+<!-- =========================
+         TEXTO / DECISIÓN
+    ========================= -->
+    <section class="story-box" id="texto1">
+        <p>
+            𝐍𝐨𝐚𝐡: Sobre la situación actual...
+        </p>
+    </section>
+
+
+
+
+
+
+
+<!-- =========================
+         VIDEO 2 (automático)
+    ========================= -->
+    <section class="video-section">
+        <video id="video2" data-next="texto2" controls>
+            <source src="recursos/video2.mp4" type="video/mp4">
+        </video>
+    </section>
+
+<!-- =========================
+         TEXTO / DECISIÓN
+    ========================= -->
+    <section class="story-box" id="texto2">
+        <p>
+            𝐍𝐨𝐚𝐡: Dónde estamos?
+        </p>
+    </section>
+
+<!-- =========================
+         VIDEO 3 (automático)
+    ========================= -->
+    <section class="video-section">
+        <video id="video3" data-next="texto3" controls>
+            <source src="recursos/video3.mp4" type="video/mp4">
+        </video>
+    </section>
+
+
+
+<!-- =========================
+         TEXTO / DECISIÓN
+    ========================= -->
+    <section class="story-box" id="texto3">
+        <p>
+            𝐍𝐨𝐚𝐡: Sobre ese lobo...
+        </p>
+    </section>
+
+
+<!-- =========================
+         VIDEO 4 (automático)
+    ========================= -->
+    <section class="video-section">
+        <video id="video4" data-next="texto4" controls>
+            <source src="recursos/video4.mp4" type="video/mp4">
+        </video>
+    </section>
+    
+    <!-- =========================
+         TEXTO / DECISIÓN
+    ========================= -->
+    <section class="story-box" id="texto4">
+        <p>
+            𝐍𝐨𝐚𝐡: Vámonos...
+        </p>
+    </section>
+<!-- =========================
+         VIDEO 5 (automático)
+    ========================= -->
+    <section class="video-section">
+        <video id="video5" data-next="xxx" controls>
+            <source src="recursos/video5.mp4" type="video/mp4">
+        </video>
+    </section>
+
+
+
+
+
+
+
+    <!-- (Aquí puedes seguir agregando más videos y textos) -->
+
+</main>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+<script src="script.js"></script>
+
+</body>
+</html>
